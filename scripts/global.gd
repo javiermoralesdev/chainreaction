@@ -9,3 +9,5 @@ extends Node
 
 var player1_piece = 3
 var player2_piece = 1
+var player1_color = Color.BROWN
+var player2_color = Color.CORNFLOWER_BLUE

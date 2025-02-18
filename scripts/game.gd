@@ -7,7 +7,7 @@ class_name Game
 @onready var cell_prefab = preload("res://scenes/cell.tscn")
 var grid = []
 
-var turn = false
+var player1 = true
 
 const cell_size = 100
 
