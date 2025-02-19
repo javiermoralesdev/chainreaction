@@ -21,5 +21,19 @@ func spawn_tile(x: int, y: int) -> Cell:
 	var tile_instance = cell_prefab.instantiate() as Cell
 	tile_instance.position = Vector2(start_position.x + cell_size*x, start_position.y + cell_size*y)
 	tile_instance.coord = Vector2(x, y)
+	tile_instance.infected.connect(manage_infection)
+	tile_instance.clicked.connect(switch_turn)
 	add_child(tile_instance)
 	return tile_instance
+	
+
+func switch_turn():
+	print("turn_switched")
+	player1 = not player1
+
+func manage_infection(coord: Vector2):
+	pass
+	
+
+func propagate(coord):
+	pass

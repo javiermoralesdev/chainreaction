@@ -2,15 +2,20 @@ extends Area2D
 
 class_name Cell
 
+signal infected(coord: Vector2)
+signal clicked
+
 var count = 0
 var player1 = true
 var coord = Vector2.ZERO
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
-		count += 1
-		set_player((get_parent() as Game).player1)
-
+		if (get_parent() as Game).player1 == player1 or count == 0:
+			count += 1
+			
+			set_player((get_parent() as Game).player1)
+			check_infect()
 func _process(_delta: float) -> void:
 	$Sprite1.visible = count >= 1
 	$Sprite2.visible = count >= 2
@@ -22,3 +27,29 @@ func set_player(p: bool):
 	$Sprite1.texture = sprite
 	$Sprite2.texture = sprite
 	$Sprite3.texture = sprite
+	
+
+func check_infect():
+	clicked.emit()
+	match count:
+		2:
+			if is_corner():
+				infect()
+		3:
+			if is_edge():
+				infect()
+		4:
+			if not is_corner() and not is_edge():
+				infect()
+
+func infect():
+	count = 0
+	infected.emit(coord)
+
+func is_corner() -> bool:
+	var size = (get_parent() as Game).grid_size - Vector2(1, 1)
+	return (coord.x == 0 && coord.y == 0) || (coord.x == size.x && coord.y == 0) || (coord.x == 0 && coord.y == size.y) || (coord.x == size.x && coord.y == size.y)
+
+func is_edge() -> bool:
+	var size = (get_parent() as Game).grid_size - Vector2(1, 1)
+	return not is_corner() && (coord.x == 0 || coord.y == 0 || coord.x == size.x || coord.y == size.y)
