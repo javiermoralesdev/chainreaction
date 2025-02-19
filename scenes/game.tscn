@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvi7tytfaq5q5"]
+[gd_scene load_steps=8 format=3 uid="uid://cvi7tytfaq5q5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_th7mq"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="2_3s12t"]
+[ext_resource type="Texture2D" uid="uid://c3smbi54gvxdp" path="res://sprites/suit_spades.png" id="2_u5bj7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4fn4"]
+bg_color = Color(0.298041, 0.204793, 0.634837, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dskwp"]
+bg_color = Color(0.388147, 0.288066, 0.789019, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upkbv"]
+bg_color = Color(0.26336, 0.174838, 0.568549, 1)
+
+[sub_resource type="Theme" id="Theme_f0hqk"]
+Button/styles/focus = SubResource("StyleBoxFlat_t4fn4")
+Button/styles/hover = SubResource("StyleBoxFlat_dskwp")
+Button/styles/normal = SubResource("StyleBoxFlat_upkbv")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_th7mq")
@@ -9,3 +25,81 @@ start_position = Vector2(100, 100)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(640, 360)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_3s12t")
+
+[node name="TurnMark" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -50.0
+offset_right = 31.0
+offset_bottom = 78.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("2_u5bj7")
+
+[node name="GameOverScreen" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 720.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.329412)
+
+[node name="GameOverText" type="Label" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Ha ganado el jugador \\_/"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -21.0
+offset_right = 62.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f0hqk")
+theme_override_font_sizes/font_size = 30
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = 53.0
+offset_right = 114.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f0hqk")
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/RetryButton" to="CanvasLayer" method="_on_retry_button_pressed"]

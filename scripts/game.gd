@@ -8,6 +8,8 @@ class_name Game
 var grid = []
 
 var player1 = true
+var turns = 0
+var game_over = false
 
 const cell_size = 100
 
@@ -16,6 +18,15 @@ func _ready() -> void:
 		grid.append([])
 		for y in range(0, grid_size.y):
 			grid[x].append(spawn_tile(x, y))
+
+func show_game_over():
+	game_over = true
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(%GameOverScreen, "position", Vector2(0, 0), 1)
+
+func _process(_delta: float) -> void:
+	%TurnMark.texture = Global.pieces[Global.player1_piece] if player1 else Global.pieces[Global.player2_piece]
+	%TurnMark.modulate = Global.player1_color if player1 else Global.player2_color
 
 func spawn_tile(x: int, y: int) -> Cell:
 	var tile_instance = cell_prefab.instantiate() as Cell
@@ -28,12 +39,42 @@ func spawn_tile(x: int, y: int) -> Cell:
 	
 
 func switch_turn():
-	print("turn_switched")
 	player1 = not player1
-
-func manage_infection(coord: Vector2):
-	pass
+	turns += 1
 	
 
-func propagate(coord):
-	pass
+func manage_infection(coord: Vector2, p1: bool):
+	if coord.x != 0:
+		propagate(Vector2(coord.x -1, coord.y), p1)
+	if coord.y != 0:
+		propagate(Vector2(coord.x, coord.y-1), p1)
+	if coord.x != grid_size.x-1:
+		propagate(Vector2(coord.x +1, coord.y), p1)
+	if coord.y != grid_size.y-1:
+		propagate(Vector2(coord.x, coord.y+1), p1)
+	if game_ended():
+		show_game_over()
+
+func game_ended() -> bool:
+	if turns < 2:
+		return false
+	var player1HasPiece = false
+	var player2HasPiece = false
+	for row in grid:
+		for cell in row:
+			if cell.count > 0:
+				if cell.player1:
+					player1HasPiece = true
+				else:
+					player2HasPiece = true
+	return not player1HasPiece or not player2HasPiece
+
+func get_cell(c: Vector2) -> Cell:
+	return grid[c.x][c.y]
+
+func propagate(coord: Vector2, p1: bool):
+	if get_cell(coord).player1 == p1 or get_cell(coord).count == 0:
+		get_cell(coord).player1 = p1
+		get_cell(coord).count += 1
+	else:
+		get_cell(coord).player1 = p1

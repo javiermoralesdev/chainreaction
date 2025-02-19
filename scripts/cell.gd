@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Cell
 
-signal infected(coord: Vector2)
+signal infected(coord: Vector2, player1: bool)
 signal clicked
 
 var count = 0
@@ -10,6 +10,8 @@ var player1 = true
 var coord = Vector2.ZERO
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if (get_parent() as Game).game_over:
+		return
 	if event.is_action_pressed("click"):
 		if (get_parent() as Game).player1 == player1 or count == 0:
 			count += 1
@@ -20,14 +22,19 @@ func _process(_delta: float) -> void:
 	$Sprite1.visible = count >= 1
 	$Sprite2.visible = count >= 2
 	$Sprite3.visible = count >= 3
-
-func set_player(p: bool):
-	player1 = p
-	var sprite = Global.pieces[Global.player1_piece] if p else Global.pieces[Global.player2_piece]
+	$Sprite1.modulate = decide_color()
+	$Sprite2.modulate = decide_color()
+	$Sprite3.modulate = decide_color()
+	var sprite = Global.pieces[Global.player1_piece] if player1 else Global.pieces[Global.player2_piece]
 	$Sprite1.texture = sprite
 	$Sprite2.texture = sprite
 	$Sprite3.texture = sprite
-	
+
+func decide_color() -> Color:
+	return Global.player1_color if player1 else Global.player2_color
+
+func set_player(p: bool):
+	player1 = p
 
 func check_infect():
 	clicked.emit()
@@ -44,7 +51,7 @@ func check_infect():
 
 func infect():
 	count = 0
-	infected.emit(coord)
+	infected.emit(coord, player1)
 
 func is_corner() -> bool:
 	var size = (get_parent() as Game).grid_size - Vector2(1, 1)
