@@ -1,22 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvi7tytfaq5q5"]
+[gd_scene load_steps=10 format=3 uid="uid://cvi7tytfaq5q5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_th7mq"]
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="2_3s12t"]
 [ext_resource type="Texture2D" uid="uid://c3smbi54gvxdp" path="res://sprites/suit_spades.png" id="2_u5bj7"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4fn4"]
-bg_color = Color(0.298041, 0.204793, 0.634837, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dskwp"]
-bg_color = Color(0.388147, 0.288066, 0.789019, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upkbv"]
-bg_color = Color(0.26336, 0.174838, 0.568549, 1)
+[ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="4_6nwrj"]
+[ext_resource type="StyleBox" uid="uid://cy0g2obixeg1v" path="res://styles/button_focus.tres" id="5_54syr"]
+[ext_resource type="StyleBox" uid="uid://bs0cotqkwihub" path="res://styles/button_hover.tres" id="6_05gpn"]
+[ext_resource type="StyleBox" uid="uid://btbm728b6gv8y" path="res://styles/button_normal.tres" id="7_aqak3"]
+[ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="8_rled6"]
 
 [sub_resource type="Theme" id="Theme_f0hqk"]
-Button/styles/focus = SubResource("StyleBoxFlat_t4fn4")
-Button/styles/hover = SubResource("StyleBoxFlat_dskwp")
-Button/styles/normal = SubResource("StyleBoxFlat_upkbv")
+Button/styles/focus = ExtResource("5_54syr")
+Button/styles/hover = ExtResource("6_05gpn")
+Button/styles/normal = ExtResource("7_aqak3")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_th7mq")
@@ -26,10 +22,10 @@ start_position = Vector2(100, 100)
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(640, 360)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GameOver" type="CanvasLayer" parent="."]
 script = ExtResource("2_3s12t")
 
-[node name="TurnMark" type="TextureRect" parent="CanvasLayer"]
+[node name="TurnMark" type="TextureRect" parent="GameOver"]
 unique_name_in_owner = true
 anchors_preset = 6
 anchor_left = 1.0
@@ -47,8 +43,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("2_u5bj7")
 
-[node name="GameOverScreen" type="ColorRect" parent="CanvasLayer"]
-unique_name_in_owner = true
+[node name="GameOverScreen" type="ColorRect" parent="GameOver"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,17 +53,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.329412)
 
-[node name="GameOverText" type="Label" parent="CanvasLayer/GameOverScreen"]
+[node name="GameOverText" type="Label" parent="GameOver/GameOverScreen"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 137.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_6nwrj")
 theme_override_font_sizes/font_size = 40
 text = "Ha ganado el jugador \\_/"
 horizontal_alignment = 1
 
-[node name="RetryButton" type="Button" parent="CanvasLayer/GameOverScreen"]
+[node name="RetryButton" type="Button" parent="GameOver/GameOverScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -82,10 +78,11 @@ offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_f0hqk")
+theme_override_fonts/font = ExtResource("8_rled6")
 theme_override_font_sizes/font_size = 30
-text = "Retry"
+text = "menu_revenge"
 
-[node name="MainMenuButton" type="Button" parent="CanvasLayer/GameOverScreen"]
+[node name="MainMenuButton" type="Button" parent="GameOver/GameOverScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,7 +96,8 @@ offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_f0hqk")
+theme_override_fonts/font = ExtResource("8_rled6")
 theme_override_font_sizes/font_size = 30
-text = "Main Menu"
+text = "menu_mm"
 
-[connection signal="pressed" from="CanvasLayer/GameOverScreen/RetryButton" to="CanvasLayer" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="GameOver/GameOverScreen/RetryButton" to="GameOver" method="_on_retry_button_pressed"]

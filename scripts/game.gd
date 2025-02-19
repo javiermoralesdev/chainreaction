@@ -10,6 +10,7 @@ var grid = []
 var player1 = true
 var turns = 0
 var game_over = false
+var player1_won = false
 
 const cell_size = 100
 
@@ -21,8 +22,7 @@ func _ready() -> void:
 
 func show_game_over():
 	game_over = true
-	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(%GameOverScreen, "position", Vector2(0, 0), 1)
+	$GameOver.appear()
 
 func _process(_delta: float) -> void:
 	%TurnMark.texture = Global.pieces[Global.player1_piece] if player1 else Global.pieces[Global.player2_piece]
@@ -67,6 +67,8 @@ func game_ended() -> bool:
 					player1HasPiece = true
 				else:
 					player2HasPiece = true
+	if not player2HasPiece:
+		player1_won = true
 	return not player1HasPiece or not player2HasPiece
 
 func get_cell(c: Vector2) -> Cell:

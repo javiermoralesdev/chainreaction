@@ -1,0 +1,9 @@
+﻿id,en,es
+mm_play,Play,Jugar
+mm_settings,Settings,Opciones
+mm_quit,Quit,Salir
+mm_res,Resolution,Resolución
+mm_fs,Fullscreen,Pantalla completa
+menu_win,Player {player} won!,¡Ha ganado el jugador {player}!
+menu_revenge,Revenge,Revancha
+menu_mm,Main menu,Menú principal
