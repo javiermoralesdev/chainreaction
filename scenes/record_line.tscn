@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://7dqk436xwplj"]
+
+[ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="1_alci3"]
+[ext_resource type="Script" path="res://scripts/record_line.gd" id="1_l1yrq"]
+[ext_resource type="Texture2D" uid="uid://ybim5wdjvrsy" path="res://sprites/suit_clubs.png" id="2_s0p68"]
+
+[node name="RecordLine" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 128.0
+grow_horizontal = 2
+script = ExtResource("1_l1yrq")
+
+[node name="TimeLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_alci3")
+theme_override_font_sizes/font_size = 20
+text = "DD/MM/YYYY HH:MM:SS"
+
+[node name="TurnsText" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_alci3")
+theme_override_font_sizes/font_size = 20
+text = "0 turnos"
+
+[node name="Player1Name" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_alci3")
+theme_override_font_sizes/font_size = 20
+text = "Player1"
+
+[node name="Player1Figure" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_s0p68")
+
+[node name="Player2Name" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_alci3")
+theme_override_font_sizes/font_size = 20
+text = "Player1"
+
+[node name="Player2Figure" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_s0p68")
+
+[node name="WinLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_alci3")
+theme_override_font_sizes/font_size = 20
+text = "Ganó Player1"

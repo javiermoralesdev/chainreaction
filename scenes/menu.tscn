@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://byubds70x00cb"]
+[gd_scene load_steps=6 format=3 uid="uid://byubds70x00cb"]
 
 [ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="1_lj4mf"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_lrkdd"]
 [ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="2_7epkb"]
 [ext_resource type="Theme" uid="uid://ym8i7c4pdqaw" path="res://styles/button_theme.tres" id="2_sk3sx"]
+[ext_resource type="AudioStream" uid="uid://dgv2ov0mwuy0f" path="res://music/menu.ogg" id="5_bcq1a"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_lrkdd")
@@ -66,5 +67,12 @@ theme_override_fonts/font = ExtResource("2_7epkb")
 theme_override_font_sizes/font_size = 30
 text = "mm_quit"
 
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_bcq1a")
+autoplay = true
+bus = &"Music"
+
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_hover"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

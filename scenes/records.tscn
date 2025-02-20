@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bactgx8ytpl5n"]
+
+[ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="1_gksis"]
+[ext_resource type="Script" path="res://scripts/records_screen.gd" id="1_thr08"]
+[ext_resource type="Theme" uid="uid://ym8i7c4pdqaw" path="res://styles/button_theme.tres" id="3_7qghv"]
+[ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="4_55hjo"]
+
+[node name="Records" type="CanvasLayer"]
+script = ExtResource("1_thr08")
+
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -328.0
+offset_top = -58.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_7qghv")
+theme_override_fonts/font = ExtResource("4_55hjo")
+theme_override_font_sizes/font_size = 30
+text = "mm_back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_gksis")
+theme_override_font_sizes/font_size = 25
+text = "mm_records"
+horizontal_alignment = 1

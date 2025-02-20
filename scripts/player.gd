@@ -2,6 +2,6 @@ extends Resource
 
 class_name Player
 
-var piece = 0
-var color = Color.WHITE
-var name = ""
+@export var piece = 0
+@export var color = Color.WHITE
+@export var name = ""

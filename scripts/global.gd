@@ -10,6 +10,16 @@ extends Node
 @onready var game_scene = preload("res://scenes/game.tscn")
 @onready var select_scene = preload("res://scenes/select.tscn")
 @onready var menu_scene = preload("res://scenes/menu.tscn")
+@onready var settings_scene = preload("res://scenes/settings.tscn")
 
 var player1 = Player.new()
 var player2 = Player.new()
+
+var records: SaveGame
+
+func _ready():
+	records = SaveGame.load_game()
+
+func update_records(r: Round):
+	records.matches.append(r)
+	records.save_game()

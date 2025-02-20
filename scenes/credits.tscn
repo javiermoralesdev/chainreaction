@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://dptxmmrrcauhc"]
+
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_5iewy"]
+[ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="1_o48ty"]
+[ext_resource type="Theme" uid="uid://ym8i7c4pdqaw" path="res://styles/button_theme.tres" id="2_r1fgk"]
+[ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="3_u6tkh"]
+[ext_resource type="AudioStream" uid="uid://dtrkbcot1j8bs" path="res://music/credits.ogg" id="4_wu2yb"]
+[ext_resource type="AudioStream" uid="uid://ch52elqjq6n1m" path="res://sounds/hover.wav" id="6_kvfus"]
+[ext_resource type="AudioStream" uid="uid://bavr442hhlvfw" path="res://sounds/click.wav" id="7_a3urt"]
+
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_5iewy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DevLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o48ty")
+theme_override_font_sizes/font_size = 30
+text = "credits_dev"
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o48ty")
+theme_override_font_sizes/font_size = 30
+text = "credits_music"
+
+[node name="SpritesLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o48ty")
+theme_override_font_sizes/font_size = 30
+text = "credits_kenney"
+
+[node name="SoundLabel2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o48ty")
+theme_override_font_sizes/font_size = 30
+text = "UI Confirmation Alert, A5.wav by InspectorJ -- https://freesound.org/s/403012/ -- License: Attribution 4.0
+"
+autowrap_mode = 1
+
+[node name="SoundLabel3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o48ty")
+theme_override_font_sizes/font_size = 30
+text = "Menu UI Click 12 by Erokia -- https://freesound.org/s/470226/ -- License: Attribution 4.0
+"
+autowrap_mode = 1
+
+[node name="SoundLabel4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o48ty")
+theme_override_font_sizes/font_size = 30
+text = "UI Click Menu Hover by EminYILDIRIM -- https://freesound.org/s/611451/ -- License: Attribution 4.0
+"
+autowrap_mode = 1
+
+[node name="SoundLabel5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_o48ty")
+theme_override_font_sizes/font_size = 30
+text = "Jingle_Win_Synth_02.wav by LittleRobotSoundFactory -- https://freesound.org/s/274178/ -- License: Attribution 4.0
+"
+autowrap_mode = 1
+
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_right = 300.0
+grow_vertical = 0
+theme = ExtResource("2_r1fgk")
+theme_override_fonts/font = ExtResource("3_u6tkh")
+theme_override_font_sizes/font_size = 25
+text = "mm_back"
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wu2yb")
+autoplay = true
+bus = &"Music"
+
+[node name="HoverPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kvfus")
+bus = &"Sounds"
+
+[node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_a3urt")
+bus = &"Sounds"
+
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_hover"]
+[connection signal="pressed" from="BackButton" to="." method="_go_back"]

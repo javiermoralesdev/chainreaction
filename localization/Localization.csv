@@ -2,14 +2,23 @@
 title,Chain Reaction,Reacción en cadena
 mm_play,Play,Jugar
 mm_settings,Settings,Opciones
+mm_back,Back,Atrás
 mm_quit,Quit,Salir
+mm_records,Records,Registros
+record_won,{player} won,ganó {player}
+record_turn,It took {turns} turns,Tomó {turns} turnos
 mm_res,Resolution,Resolución
 mm_fs,Fullscreen,Pantalla completa
+mm_music,Music volume,Volumen música
+mm_effects,Effects volume,Volumen efectos
 menu_win,{player} won!,¡Ha ganado {player}!
 menu_revenge,Revenge,Revancha
 menu_mm,Main menu,Menú principal
 title_select,Configure the match,Configura la partida
-warn_select,The pieces have the same shape and color,Las figuras tienen la misma forma y color
+warn_select,The shape and/or color of each player must be different,Las figuras tienen la misma forma y color
 warn_name,Both players must have a name,Los dos jugadores deben tener nombre
 warn_ok,Ok,Aceptar
 name_enter,Enter name...,Introduce tu nombre...
+credits_dev,Created by Javier Morales,Creado por Javier Morales
+credits_music,Music from patrickdearteaga.com,Música de patrickdearteaga.com
+credits_kenney,Poker icons from kenney.com,Iconos de póker de kenney.com

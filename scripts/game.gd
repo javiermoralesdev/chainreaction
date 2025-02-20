@@ -22,6 +22,13 @@ func _ready() -> void:
 
 func show_game_over():
 	game_over = true
+	var r = Round.new()
+	r.player1 = Global.player1
+	r.player2 = Global.player2
+	r.player1_won = player1_won
+	r.turns = turns
+	r.time = Time.get_unix_time_from_system()
+	Global.update_records(r)
 	$GameOver.appear()
 
 func _process(_delta: float) -> void:
