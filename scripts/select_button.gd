@@ -15,6 +15,6 @@ func _ready() -> void:
 
 func _set_piece():
 	if player1:
-		Global.player1_piece = type
+		Global.player1.piece = type
 	else:
-		Global.player2_piece = type
+		Global.player2.piece = type

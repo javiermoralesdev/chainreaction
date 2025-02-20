@@ -1,8 +1,9 @@
 extends ColorRect
 
 
-func appear():
+func appear(text: String):
 	visible = true
+	$Warning.text = tr(text)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(self, "scale", Vector2(1, 1), .5)
 

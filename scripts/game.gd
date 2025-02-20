@@ -25,8 +25,8 @@ func show_game_over():
 	$GameOver.appear()
 
 func _process(_delta: float) -> void:
-	%TurnMark.texture = Global.pieces[Global.player1_piece] if player1 else Global.pieces[Global.player2_piece]
-	%TurnMark.modulate = Global.player1_color if player1 else Global.player2_color
+	%TurnMark.texture = Global.pieces[Global.player1.piece] if player1 else Global.pieces[Global.player2.piece]
+	%TurnMark.modulate = Global.player1.color if player1 else Global.player2.color
 
 func spawn_tile(x: int, y: int) -> Cell:
 	var tile_instance = cell_prefab.instantiate() as Cell

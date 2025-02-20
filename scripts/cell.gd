@@ -25,13 +25,13 @@ func _process(_delta: float) -> void:
 	$Sprite1.modulate = decide_color()
 	$Sprite2.modulate = decide_color()
 	$Sprite3.modulate = decide_color()
-	var sprite = Global.pieces[Global.player1_piece] if player1 else Global.pieces[Global.player2_piece]
+	var sprite = Global.pieces[Global.player1.piece] if player1 else Global.pieces[Global.player2.piece]
 	$Sprite1.texture = sprite
 	$Sprite2.texture = sprite
 	$Sprite3.texture = sprite
 
 func decide_color() -> Color:
-	return Global.player1_color if player1 else Global.player2_color
+	return Global.player1.color if player1 else Global.player2.color
 
 func set_player(p: bool):
 	player1 = p

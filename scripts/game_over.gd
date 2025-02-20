@@ -10,7 +10,6 @@ func appear():
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	tween.tween_property($GameOverScreen, "position", Vector2(0, 0), 1)
 
-
 func _on_main_menu_button_pressed() -> void:
 	Transition.transition()
 	await Transition.on_transition_finished
