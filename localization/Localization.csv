@@ -1,4 +1,5 @@
 ﻿id,en,es
+title,Chain Reaction,Reacción en cadena
 mm_play,Play,Jugar
 mm_settings,Settings,Opciones
 mm_quit,Quit,Salir
@@ -7,3 +8,6 @@ mm_fs,Fullscreen,Pantalla completa
 menu_win,Player {player} won!,¡Ha ganado el jugador {player}!
 menu_revenge,Revenge,Revancha
 menu_mm,Main menu,Menú principal
+title_select,Configure the match,Configura la partida
+warn_select,The pieces have the same shape and color,Las figuras tienen la misma forma y color
+warn_ok,Ok,Aceptar

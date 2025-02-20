@@ -1,0 +1,249 @@
+[gd_scene load_steps=11 format=3 uid="uid://i5qr4eoo12ve"]
+
+[ext_resource type="Texture2D" uid="uid://ybim5wdjvrsy" path="res://sprites/suit_clubs.png" id="1_1g610"]
+[ext_resource type="Script" path="res://scripts/select_screen.gd" id="1_7tfgc"]
+[ext_resource type="Texture2D" uid="uid://c3smbi54gvxdp" path="res://sprites/suit_spades.png" id="1_t4skl"]
+[ext_resource type="Script" path="res://scripts/select_button.gd" id="2_dkejb"]
+[ext_resource type="Texture2D" uid="uid://b7jg28oxmo0do" path="res://sprites/suit_diamonds.png" id="3_7504u"]
+[ext_resource type="Texture2D" uid="uid://jwxkwmcswdnu" path="res://sprites/suit_hearts.png" id="4_yrdlk"]
+[ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="7_4fb8a"]
+[ext_resource type="Theme" uid="uid://ym8i7c4pdqaw" path="res://styles/button_theme.tres" id="7_k7ncj"]
+[ext_resource type="Script" path="res://scripts/warning_screen.gd" id="9_1wglo"]
+[ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="9_6yc0m"]
+
+[node name="Select" type="CanvasLayer"]
+script = ExtResource("1_7tfgc")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_6yc0m")
+theme_override_font_sizes/font_size = 40
+text = "title_select"
+horizontal_alignment = 1
+
+[node name="P1Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 134.0
+offset_right = 40.0
+offset_bottom = 174.0
+
+[node name="ClubsButton" type="TextureButton" parent="P1Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 188.0
+offset_bottom = 188.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_1g610")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+player1 = true
+
+[node name="DiamondsButton" type="TextureButton" parent="P1Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 150.0
+offset_right = 188.0
+offset_bottom = 278.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_7504u")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+type = 1
+player1 = true
+
+[node name="HeartsButton" type="TextureButton" parent="P1Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 240.0
+offset_right = 188.0
+offset_bottom = 368.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_yrdlk")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+type = 2
+player1 = true
+
+[node name="SpadesButton" type="TextureButton" parent="P1Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 330.0
+offset_right = 188.0
+offset_bottom = 458.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_t4skl")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+type = 3
+player1 = true
+
+[node name="P1Color" type="ColorPickerButton" parent="P1Buttons"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 170.0
+offset_right = 306.0
+offset_bottom = 265.0
+color = Color(1, 1, 1, 1)
+
+[node name="P2Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1100.0
+offset_top = 134.0
+offset_right = 1140.0
+offset_bottom = 174.0
+
+[node name="ClubsButton" type="TextureButton" parent="P2Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 188.0
+offset_bottom = 188.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_1g610")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+
+[node name="DiamondsButton" type="TextureButton" parent="P2Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 150.0
+offset_right = 188.0
+offset_bottom = 278.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_7504u")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+type = 1
+
+[node name="HeartsButton" type="TextureButton" parent="P2Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 240.0
+offset_right = 188.0
+offset_bottom = 368.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_yrdlk")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+type = 2
+
+[node name="SpadesButton" type="TextureButton" parent="P2Buttons"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 330.0
+offset_right = 188.0
+offset_bottom = 458.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_t4skl")
+stretch_mode = 0
+script = ExtResource("2_dkejb")
+type = 3
+
+[node name="P2Color" type="ColorPickerButton" parent="P2Buttons"]
+offset_left = -119.0
+offset_top = 180.0
+offset_right = 16.0
+offset_bottom = 275.0
+color = Color(1, 1, 1, 1)
+
+[node name="Player1" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -30.0
+offset_right = -102.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_1g610")
+
+[node name="Player2" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 164.0
+offset_top = -29.0
+offset_right = 292.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_1g610")
+
+[node name="PlayButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -38.5
+offset_right = 90.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_k7ncj")
+theme_override_fonts/font = ExtResource("7_4fb8a")
+theme_override_font_sizes/font_size = 30
+text = "mm_play"
+
+[node name="WarningScreen" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+color = Color(0, 0, 0, 0.568627)
+script = ExtResource("9_1wglo")
+
+[node name="Label" type="Label" parent="WarningScreen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_6yc0m")
+theme_override_font_sizes/font_size = 50
+text = "warn_select"
+horizontal_alignment = 1
+
+[node name="AcceptButton" type="Button" parent="WarningScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -225.0
+offset_right = 150.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("7_k7ncj")
+theme_override_fonts/font = ExtResource("7_4fb8a")
+theme_override_font_sizes/font_size = 30
+text = "warn_ok"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="color_changed" from="P1Buttons/P1Color" to="." method="_p1_color_changed"]
+[connection signal="color_changed" from="P2Buttons/P2Color" to="." method="_on_p2_color_changed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="WarningScreen/AcceptButton" to="WarningScreen" method="_on_accept_button_pressed"]
