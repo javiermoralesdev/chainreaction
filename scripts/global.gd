@@ -21,10 +21,11 @@ var records: SaveGame
 var settings_data: SettingsData
 
 func _ready():
+	DisplayServer.window_set_title(tr("title"))
 	records = SaveGame.load_game()
 	settings_data = SettingsData.load()
-	AudioServer.set_bus_volume_db(1, settings_data.music_vol)
-	AudioServer.set_bus_volume_db(2, settings_data.sounds_vol)
+	AudioServer.set_bus_volume_db(1, linear_to_db(settings_data.music_vol))
+	AudioServer.set_bus_volume_db(2, linear_to_db(settings_data.sounds_vol))
 	DisplayServer.window_set_mode(
 		DisplayServer.WINDOW_MODE_FULLSCREEN if 
 		settings_data.fullscreen else 

@@ -1,8 +1,14 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	$VBoxContainer/MusicSlider.value = Global.settings_data.music_vol
+	$VBoxContainer/SoundSlider.value = Global.settings_data.sounds_vol
+	$VBoxContainer/FullscreenCheckBox.button_pressed = Global.settings_data.fullscreen
+
 func _change_music(value: float) -> void:
-	AudioServer.set_bus_volume_db(1, value)
+	AudioServer.set_bus_volume_db(1, linear_to_db(value))
 	Global.update_music_vol(value)
+	
 
 
 func _on_back_button_pressed() -> void:
@@ -18,7 +24,8 @@ func _on_back_button_mouse_entered() -> void:
 
 
 func _effects_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(2, value)
+	var db = linear_to_db(value)
+	AudioServer.set_bus_volume_db(2, db)
 	Global.update_sound_vol(value)
 
 

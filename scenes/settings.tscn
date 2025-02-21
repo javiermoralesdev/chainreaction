@@ -32,8 +32,9 @@ text = "mm_music"
 
 [node name="MusicSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
-min_value = -80.0
-max_value = 0.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="SoundLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -43,10 +44,11 @@ text = "mm_effects"
 
 [node name="SoundSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
-min_value = -80.0
-max_value = 0.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+[node name="FullscreenCheckBox" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_l0xx8")
 theme_override_font_sizes/font_size = 30
@@ -82,6 +84,6 @@ bus = &"Sounds"
 
 [connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_change_music"]
 [connection signal="value_changed" from="VBoxContainer/SoundSlider" to="." method="_effects_changed"]
-[connection signal="toggled" from="VBoxContainer/CheckBox" to="." method="_switch_fs"]
+[connection signal="toggled" from="VBoxContainer/FullscreenCheckBox" to="." method="_switch_fs"]
 [connection signal="mouse_entered" from="BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
