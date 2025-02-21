@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://byubds70x00cb"]
+[gd_scene load_steps=8 format=3 uid="uid://byubds70x00cb"]
 
 [ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="1_lj4mf"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_lrkdd"]
 [ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="2_7epkb"]
 [ext_resource type="Theme" uid="uid://ym8i7c4pdqaw" path="res://styles/button_theme.tres" id="2_sk3sx"]
 [ext_resource type="AudioStream" uid="uid://dgv2ov0mwuy0f" path="res://music/menu.ogg" id="5_bcq1a"]
+[ext_resource type="AudioStream" uid="uid://bavr442hhlvfw" path="res://sounds/click.wav" id="6_jw78u"]
+[ext_resource type="AudioStream" uid="uid://ch52elqjq6n1m" path="res://sounds/hover.wav" id="7_60n0h"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_lrkdd")
@@ -26,9 +28,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -120.0
-offset_top = -196.0
+offset_top = -200.0
 offset_right = 121.0
-offset_bottom = -117.0
+offset_bottom = -121.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sk3sx")
@@ -43,15 +45,49 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -119.5
-offset_top = -92.5
+offset_top = -90.0
 offset_right = 121.5
-offset_bottom = -13.5
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_sk3sx")
 theme_override_fonts/font = ExtResource("2_7epkb")
 theme_override_font_sizes/font_size = 30
 text = "mm_settings"
+
+[node name="RecordsButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = 20.0
+offset_right = 121.5
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sk3sx")
+theme_override_fonts/font = ExtResource("2_7epkb")
+theme_override_font_sizes/font_size = 30
+text = "mm_records"
+
+[node name="CreditsButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = 130.0
+offset_right = 121.5
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sk3sx")
+theme_override_fonts/font = ExtResource("2_7epkb")
+theme_override_font_sizes/font_size = 30
+text = "mm_credits"
 
 [node name="QuitButton" type="Button" parent="."]
 anchors_preset = 2
@@ -72,7 +108,21 @@ stream = ExtResource("5_bcq1a")
 autoplay = true
 bus = &"Music"
 
+[node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jw78u")
+bus = &"Sounds"
+
+[node name="HoverPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_60n0h")
+bus = &"Sounds"
+
 [connection signal="mouse_entered" from="PlayButton" to="." method="_on_hover"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="SettingsButton" to="." method="_on_hover"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="RecordsButton" to="." method="_on_hover"]
+[connection signal="pressed" from="RecordsButton" to="." method="_on_records_button_pressed"]
+[connection signal="mouse_entered" from="CreditsButton" to="." method="_on_hover"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_hover"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

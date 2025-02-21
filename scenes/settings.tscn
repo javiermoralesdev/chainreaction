@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpmbv6vlmrtmf"]
+[gd_scene load_steps=8 format=3 uid="uid://dpmbv6vlmrtmf"]
 
+[ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="1_2egul"]
 [ext_resource type="AudioStream" uid="uid://c1dvb8g6vmily" path="res://music/settings.ogg" id="1_5aakf"]
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_fqrm1"]
+[ext_resource type="FontFile" uid="uid://cwgdw0dwxqurg" path="res://fonts/Nexa-ExtraLight.ttf" id="2_l0xx8"]
+[ext_resource type="Theme" uid="uid://ym8i7c4pdqaw" path="res://styles/button_theme.tres" id="5_vsbmg"]
+[ext_resource type="AudioStream" uid="uid://bavr442hhlvfw" path="res://sounds/click.wav" id="6_iyxjc"]
+[ext_resource type="AudioStream" uid="uid://ch52elqjq6n1m" path="res://sounds/hover.wav" id="7_pkq8n"]
 
 [node name="Settings" type="CanvasLayer"]
+script = ExtResource("1_fqrm1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
@@ -11,15 +18,70 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2egul")
+theme_override_font_sizes/font_size = 35
+text = "mm_settings"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l0xx8")
+theme_override_font_sizes/font_size = 30
+text = "mm_music"
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
 min_value = -80.0
 max_value = 0.0
+
+[node name="SoundLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l0xx8")
+theme_override_font_sizes/font_size = 30
+text = "mm_effects"
+
+[node name="SoundSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+min_value = -80.0
+max_value = 0.0
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l0xx8")
+theme_override_font_sizes/font_size = 30
+text = "mm_fs"
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_5aakf")
 autoplay = true
 bus = &"Music"
+
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -233.0
+offset_top = -55.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("5_vsbmg")
+theme_override_fonts/font = ExtResource("2_l0xx8")
+theme_override_font_sizes/font_size = 20
+text = "mm_back"
+
+[node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_iyxjc")
+bus = &"Sounds"
+
+[node name="HoverPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_pkq8n")
+bus = &"Sounds"
+
+[connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_change_music"]
+[connection signal="value_changed" from="VBoxContainer/SoundSlider" to="." method="_effects_changed"]
+[connection signal="toggled" from="VBoxContainer/CheckBox" to="." method="_switch_fs"]
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

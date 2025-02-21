@@ -7,3 +7,15 @@ func _ready() -> void:
 		var line = record_line_prefab.instantiate()
 		line.update(r)
 		$ScrollContainer/VBoxContainer.add_child(line)
+
+
+
+func _on_back_button_pressed() -> void:
+	$ClickPlayer.play()
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file(Global.menu_scene)
+
+
+func _on_back_button_mouse_entered() -> void:
+	$HoverPlayer.play()

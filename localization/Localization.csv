@@ -5,6 +5,7 @@ mm_settings,Settings,Opciones
 mm_back,Back,Atrás
 mm_quit,Quit,Salir
 mm_records,Records,Registros
+mm_credits,Credits,Créditos
 record_won,{player} won,ganó {player}
 record_turn,It took {turns} turns,Tomó {turns} turnos
 mm_res,Resolution,Resolución

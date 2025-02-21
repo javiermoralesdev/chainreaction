@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://i5qr4eoo12ve"]
+[gd_scene load_steps=14 format=3 uid="uid://i5qr4eoo12ve"]
 
 [ext_resource type="Texture2D" uid="uid://ybim5wdjvrsy" path="res://sprites/suit_clubs.png" id="1_1g610"]
 [ext_resource type="Script" path="res://scripts/select_screen.gd" id="1_7tfgc"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/warning_screen.gd" id="9_1wglo"]
 [ext_resource type="FontFile" uid="uid://cif5ntlygwulu" path="res://fonts/Nexa-Heavy.ttf" id="9_6yc0m"]
 [ext_resource type="AudioStream" uid="uid://bv1anxgxbe4na" path="res://music/select.ogg" id="11_nl4y7"]
+[ext_resource type="AudioStream" uid="uid://bavr442hhlvfw" path="res://sounds/click.wav" id="12_teeuy"]
+[ext_resource type="AudioStream" uid="uid://ch52elqjq6n1m" path="res://sounds/hover.wav" id="13_b04ru"]
 
 [node name="Select" type="CanvasLayer"]
 script = ExtResource("1_7tfgc")
@@ -267,6 +269,14 @@ placeholder_text = "name_enter"
 stream = ExtResource("11_nl4y7")
 autoplay = true
 bus = &"Music"
+
+[node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_teeuy")
+bus = &"Sounds"
+
+[node name="HoverPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_b04ru")
+bus = &"Sounds"
 
 [connection signal="color_changed" from="P1Buttons/P1Color" to="." method="_p1_color_changed"]
 [connection signal="color_changed" from="P2Buttons/P2Color" to="." method="_on_p2_color_changed"]

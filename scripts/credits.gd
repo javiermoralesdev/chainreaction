@@ -7,4 +7,4 @@ func _go_back():
 	$ClickPlayer.play()
 	Transition.transition()
 	await Transition.on_transition_finished
-	get_tree().change_scene_to_packed(Global.menu_scene)
+	get_tree().change_scene_to_file(Global.menu_scene)
