@@ -9,13 +9,19 @@ var count = 0
 var player1 = true
 var coord = Vector2.ZERO
 
+func _ready() -> void:
+	mouse_entered.connect(_on_hover)
+
+func _on_hover():
+	(get_parent() as Game).on_hover()
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if (get_parent() as Game).game_over:
 		return
 	if event.is_action_pressed("click"):
 		if (get_parent() as Game).player1 == player1 or count == 0:
 			count += 1
-			
+			(get_parent() as Game).play_stomp()
 			set_player((get_parent() as Game).player1)
 			check_infect()
 func _process(_delta: float) -> void:

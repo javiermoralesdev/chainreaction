@@ -21,6 +21,7 @@ func _ready() -> void:
 			grid[x].append(spawn_tile(x, y))
 
 func show_game_over():
+	%WinPlayer.play()
 	game_over = true
 	var r = Round.new()
 	r.player1 = Global.player1
@@ -80,6 +81,14 @@ func game_ended() -> bool:
 
 func get_cell(c: Vector2) -> Cell:
 	return grid[c.x][c.y]
+
+func on_hover():
+	if OS.get_name() == "Android":
+		return
+	%HoverPlayer.play()
+
+func play_stomp():
+	%StompPlayer.play()
 
 func propagate(coord: Vector2, p1: bool):
 	if get_cell(coord).player1 == p1 or get_cell(coord).count == 0:

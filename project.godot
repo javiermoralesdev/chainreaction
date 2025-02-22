@@ -13,6 +13,7 @@ config_version=5
 config/name="ChainReaction"
 run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://images/splash_en.png"
 config/icon="res://icon/icon.png"
 
 [autoload]
@@ -36,9 +37,12 @@ click={
 
 [internationalization]
 
+locale/translation_remaps={}
 locale/translations=PackedStringArray("res://localization/Localization.en.translation", "res://localization/Localization.es.translation")
+locale/locale_filter_mode=0
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.144063, 0.144063, 0.144063, 1)

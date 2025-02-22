@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+func _ready():
+	if OS.get_name() == "Android" or OS.get_name() == "Web":
+		$QuitButton.queue_free()
+
 func go_to_scene(dst: String):
 	$ClickPlayer.play()
 	Transition.transition()
@@ -20,9 +24,14 @@ func _on_quit_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	go_to_scene(Global.settings_scene)
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		_on_quit_button_pressed()
 
 
 func _on_hover() -> void:
+	if OS.get_name() == "Android":
+		return
 	$HoverPlayer.play()
 
 

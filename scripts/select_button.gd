@@ -12,8 +12,10 @@ enum PieceType{
 
 func _ready() -> void:
 	pressed.connect(_set_piece)
+	mouse_entered.connect($"/root/Select"._on_hover)
 
 func _set_piece():
+	%ClickPlayer.play()
 	if player1:
 		Global.player1.piece = type
 	else:

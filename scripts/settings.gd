@@ -4,12 +4,17 @@ func _ready() -> void:
 	$VBoxContainer/MusicSlider.value = Global.settings_data.music_vol
 	$VBoxContainer/SoundSlider.value = Global.settings_data.sounds_vol
 	$VBoxContainer/FullscreenCheckBox.button_pressed = Global.settings_data.fullscreen
+	if OS.get_name() == "Android" or OS.get_name() == "Web":
+		$VBoxContainer/FullscreenCheckBox.queue_free()
 
 func _change_music(value: float) -> void:
 	AudioServer.set_bus_volume_db(1, linear_to_db(value))
 	Global.update_music_vol(value)
 	
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		_on_back_button_pressed()
 
 func _on_back_button_pressed() -> void:
 	$ClickPlayer.play()
@@ -20,6 +25,8 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_back_button_mouse_entered() -> void:
+	if OS.get_name() == "Android":
+		return
 	$HoverPlayer.play()
 
 

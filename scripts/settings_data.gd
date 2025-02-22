@@ -3,8 +3,8 @@ class_name SettingsData
 
 const SAVE_SETTINGS_PATH = "user://settings.tres"
 
-@export var music_vol: float = 0
-@export var sounds_vol: float = 0
+@export var music_vol: float = 1
+@export var sounds_vol: float = 1
 @export var fullscreen: bool = false
 
 func save():

@@ -30,9 +30,10 @@ func _on_play_button_pressed() -> void:
 	if $Player1Name.text == "" or $Player2Name.text == "":
 		$WarningScreen.appear("warn_name")
 		return
+	$ClickPlayer.play()
 	Transition.transition()
 	await Transition.on_transition_finished
-	get_tree().change_scene_to_packed(Global.game_scene)
+	get_tree().change_scene_to_file(Global.game_scene)
 
 
 func _on_player_1_name_text_changed(new_text: String) -> void:
@@ -41,3 +42,19 @@ func _on_player_1_name_text_changed(new_text: String) -> void:
 
 func _on_player_2_name_text_changed(new_text: String) -> void:
 	Global.player2.name = new_text
+
+
+func _on_hover() -> void:
+	if OS.get_name() == "Android":
+		return
+	$HoverPlayer.play()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		_on_back_button_pressed()
+
+func _on_back_button_pressed() -> void:
+	%ClickPlayer.play()
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file(Global.menu_scene)

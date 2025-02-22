@@ -16,6 +16,7 @@ extends Node
 
 var player1 = Player.new()
 var player2 = Player.new()
+var first_run = false
 
 var records: SaveGame
 var settings_data: SettingsData

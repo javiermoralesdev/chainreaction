@@ -18,4 +18,6 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_back_button_mouse_entered() -> void:
+	if OS.get_name() == "Android":
+		return
 	$HoverPlayer.play()
