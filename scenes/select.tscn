@@ -272,7 +272,7 @@ offset_right = 556.0
 offset_bottom = 260.0
 theme_override_fonts/font = ExtResource("9_6yc0m")
 theme_override_font_sizes/font_size = 20
-placeholder_text = "name_enter"
+placeholder_text = "Player1"
 
 [node name="Player2Name" type="LineEdit" parent="."]
 offset_left = 744.0
@@ -281,7 +281,7 @@ offset_right = 1130.0
 offset_bottom = 260.0
 theme_override_fonts/font = ExtResource("9_6yc0m")
 theme_override_font_sizes/font_size = 20
-placeholder_text = "name_enter"
+placeholder_text = "Player2"
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_nl4y7")

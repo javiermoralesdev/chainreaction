@@ -27,9 +27,10 @@ func _on_play_button_pressed() -> void:
 	if Global.player1.color == Global.player2.color and Global.player1.piece == Global.player2.piece:
 		$WarningScreen.appear("warn_select")
 		return
-	if $Player1Name.text == "" or $Player2Name.text == "":
-		$WarningScreen.appear("warn_name")
-		return
+	if $Player1Name.text == "":
+		Global.player1.name = "Player1"
+	if $Player2Name.text == "":
+		Global.player2.name = "Player2"
 	$ClickPlayer.play()
 	Transition.transition()
 	await Transition.on_transition_finished
