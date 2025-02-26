@@ -19,7 +19,7 @@ func _p1_color_changed(color: Color) -> void:
 
 
 func _on_p2_color_changed(color: Color) -> void:
-	Global.player1.color = color
+	Global.player2.color = color
 	
 
 

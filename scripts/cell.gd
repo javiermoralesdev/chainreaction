@@ -54,6 +54,8 @@ func check_infect():
 		4:
 			if not is_corner() and not is_edge():
 				infect()
+		_:
+			infect()
 
 func infect():
 	count = 0

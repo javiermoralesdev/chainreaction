@@ -94,5 +94,6 @@ func propagate(coord: Vector2, p1: bool):
 	if get_cell(coord).player1 == p1 or get_cell(coord).count == 0:
 		get_cell(coord).player1 = p1
 		get_cell(coord).count += 1
+		get_cell(coord).check_infect()
 	else:
 		get_cell(coord).player1 = p1
