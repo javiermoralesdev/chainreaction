@@ -8,6 +8,7 @@ signal clicked
 var count = 0
 var player1 = true
 var coord = Vector2.ZERO
+var is_chained = false
 
 func _ready() -> void:
 	mouse_entered.connect(_on_hover)
@@ -43,8 +44,12 @@ func set_player(p: bool):
 	player1 = p
 
 func check_infect():
+	if is_chained:
+		return
 	clicked.emit()
 	match count:
+		1:
+			pass
 		2:
 			if is_corner():
 				infect()
@@ -58,6 +63,9 @@ func check_infect():
 			infect()
 
 func infect():
+	if is_chained:
+		return
+	is_chained = true
 	count = 0
 	infected.emit(coord, player1)
 

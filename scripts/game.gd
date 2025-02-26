@@ -14,6 +14,11 @@ var player1_won = false
 
 const cell_size = 100
 
+func reset_grid():
+	for row in grid:
+		for square in row:
+			(square as Cell).is_chained = false
+
 func _ready() -> void:
 	for x in range(0, grid_size.x):
 		grid.append([])
@@ -48,6 +53,7 @@ func spawn_tile(x: int, y: int) -> Cell:
 
 func switch_turn():
 	player1 = not player1
+	reset_grid()
 	turns += 1
 	
 
